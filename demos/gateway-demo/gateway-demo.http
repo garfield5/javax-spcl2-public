@@ -1,0 +1,5 @@
+### Circuit breaker
+http://localhost:8000/actuator/circuitbreakers
+
+### List employees
+http://localhost:8000/api/employees

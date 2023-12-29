@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    employees: DEBUG
+    org.hibernate.SQL: TRACE
+
+employees:
+  backend-url: http://localhost:8081
+spring:
+  cloud:
+    stream:
+      function:
+        bindings:
+          employeeCreated-in-0: employee-backend-event

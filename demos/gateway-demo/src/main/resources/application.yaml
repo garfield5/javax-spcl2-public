@@ -1,0 +1,34 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: employees-backend
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/employees/**
+          filters:
+            - AddRequestHeader=X-Gateway, Hello
+            - name: CircuitBreaker
+              args:
+                name: employees-backend
+                fallbackUri: forward:/api/dummy-employees
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      waitDurationInOpenState: 30s
+  instances:
+    employees-backend:
+      baseConfig: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
