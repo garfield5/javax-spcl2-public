@@ -684,7 +684,16 @@ docker run -d -e POSTGRES_DB=employees -e POSTGRES_USER=employees -e POSTGRES_PA
 
 # Spring Cloud Stream
 
+## Bevezetés a Spring Cloud Stream használatába
+
 Lsd. slide-ok.
+
+## Kiinduló alkalmazások másolása
+
+```shell
+xcopy /e /i javax-spcl2-public\demos-init\employees-backend javax-spcl2\stream-employees-backend
+xcopy /e /i javax-spcl2-public\demos-init\employees-frontend javax-spcl2\stream-employees-frontend
+```
 
 ## Kafka üzenet küldése üzleti logikából
 
@@ -1120,6 +1129,13 @@ spring:
   * Retry
   * TimeLimiter
 
+## Kiinduló alkalmazások másolása
+
+```shell
+xcopy /e /i javax-spcl2-public\demos-init\employees-backend javax-spcl2\circuitbreaker-employees-backend
+xcopy /e /i javax-spcl2-public\demos-init\employees-frontend javax-spcl2\circuitbreaker-employees-frontend
+```
+
 ## Backend alkalmazás előkészítése
 
 * [Chaos Monkey for Spring Boot](https://codecentric.github.io/chaos-monkey-spring-boot/)
@@ -1390,6 +1406,13 @@ GET http://localhost:8080/actuator/ratelimiterevents
 ```
 
 # Spring Cloud Gateway
+
+## Kiinduló alkalmazások másolása
+
+```shell
+xcopy /e /i javax-spcl2-public\demos-init\employees-backend javax-spcl2\gateway-employees-backend
+xcopy /e /i javax-spcl2-public\demos-init\employees-frontend javax-spcl2\gateway-employees-frontend
+```
 
 ## Spring Cloud Gateway használatba vétele
 
