@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: employees-backend
   datasource:
     url: jdbc:postgresql://localhost:5432/employees
     username: employees
@@ -10,14 +12,25 @@ spring:
     open-in-view: false
   liquibase:
     change-log: classpath:db/db-changelog.yaml
+  profiles:
+    active: chaos-monkey
 
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+  endpoint:
+    chaosmonkey:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
 
 logging:
   level:
     employees: DEBUG
     org.hibernate.SQL: TRACE
+eureka:
+  instance:
+    prefer-ip-address: true

@@ -1,0 +1,29 @@
+### Circuit breakers
+GET http://localhost:8080/actuator/circuitbreakers
+
+### Circuit breaker events
+GET http://localhost:8080/actuator/circuitbreakerevents
+
+### Metrics
+GET http://localhost:8080/actuator/metrics
+
+### Failure rate
+GET http://localhost:8080/actuator/metrics/resilience4j.circuitbreaker.failure.rate
+
+###
+GET http://localhost:8080/actuator/timelimiters
+
+###
+GET http://localhost:8080/actuator/timelimiterevents
+
+###
+GET http://localhost:8080/actuator/retries
+
+###
+GET http://localhost:8080/actuator/retryevents
+
+###
+GET http://localhost:8080/actuator/ratelimiters
+
+###
+GET http://localhost:8080/actuator/ratelimiterevents

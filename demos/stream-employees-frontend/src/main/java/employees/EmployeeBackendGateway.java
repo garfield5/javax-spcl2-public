@@ -12,6 +12,6 @@ public class EmployeeBackendGateway {
 
     public void createEmployee(Employee employee) {
         var command = new CreateEmployeeCommand(employee.getName());
-        streamBridge.send("employee-backend-command", command);
+        streamBridge.send("createEmployee", command);
     }
 }

@@ -23,3 +23,66 @@ Accept: application/json
 {
   "name": "John Doe"
 }
+
+### Chaos Monkey állapotának lekérdezése
+GET http://localhost:8081/actuator/chaosmonkey
+
+### Chaos Monkey bekapcsolása
+POST http://localhost:8081/actuator/chaosmonkey/enable
+Content-Type: application/json
+
+{
+  "enabled": true
+}
+
+### Chaos Monkey - RestController watcher bekapcsolása
+POST http://localhost:8081/actuator/chaosmonkey/watchers
+Content-Type: application/json
+
+{
+  "restController": "true"
+}
+
+### Chaos Monkey - EmployeesController.listEmployees metódus dobjon kivételt
+POST http://localhost:8081/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyActive": false,
+  "exceptionsActive": true,
+  "exception": {
+    "type": "java.lang.RuntimeException",
+    "method": "<init>",
+    "arguments": [
+      {
+        "type": "java.lang.String",
+        "value": "Chaos Monkey - RuntimeException"
+      }
+    ]
+  },
+  "watchedCustomServices": ["employees.EmployeesController.listEmployees"]
+}
+
+### Chaos Monkey - EmployeesController.listEmployees metódus latency
+POST http://localhost:8081/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyActive": true,
+  "latencyRangeStart": 1000,
+  "latencyRangeEnd": 3000,
+  "exceptionsActive": false,
+  "exception": {
+    "type": "java.lang.RuntimeException",
+    "method": "<init>",
+    "arguments": [
+      {
+        "type": "java.lang.String",
+        "value": "Chaos Monkey - RuntimeException"
+      }
+    ]
+  },
+  "watchedCustomServices": ["employees.EmployeesController.listEmployees"]
+}

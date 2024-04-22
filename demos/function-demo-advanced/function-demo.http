@@ -1,0 +1,43 @@
+POST http://localhost:8080/calculate
+Content-Type: application/json
+
+{
+  "a": 1.1234,
+  "b": 2.1234
+}
+
+###
+POST http://localhost:8080/calculate,round
+Content-Type: application/json
+
+{
+  "a": 1.1234,
+  "b": 2.1234
+}
+
+###
+POST http://localhost:8080/multiply
+Content-Type: application/json
+Request-Id: {{$uuid}}
+
+{
+  "a": 1.1234,
+  "b": 2.1234
+}
+
+###
+POST http://localhost:8080/functionRouter
+Content-Type: application/json
+Request-Id: {{$uuid}}
+Operation: multiply
+
+{
+  "a": 1.1234,
+  "b": 2.1234
+}
+
+###
+GET http://localhost:8080/actuator
+
+###
+GET http://localhost:8080/actuator/functions

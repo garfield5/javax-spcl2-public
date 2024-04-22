@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: chaos-monkey
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employees
+    username: employees
+    password: employees
+  jpa:
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/db-changelog.yaml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    chaosmonkey:
+      enabled: true
+
+logging:
+  level:
+    employees: DEBUG
+    org.hibernate.SQL: TRACE
+

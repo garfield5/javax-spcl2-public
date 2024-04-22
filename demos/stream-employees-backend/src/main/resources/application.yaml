@@ -11,17 +11,42 @@ spring:
   liquibase:
     change-log: classpath:db/db-changelog.yaml
   cloud:
+    function:
+      definition: createEmployee;tick
     stream:
-      function:
+      bindings:
+        createEmployee-in-0:
+#          error-handler-definition: employeesErrorHandler
+          destination: employee-backend-command
+          group: employee-backend
+          content-type: application/*+avro
+        createEmployee-out-0:
+          destination: employee-backend-event
+          content-type: application/*+avro
+        tick-out-0:
+          producer:
+            poller:
+              initial-delay: 0
+              fixed-delay: 5000
+          destination: employee-backend-tick
+      kafka:
+        binder:
+          enable-observation: true
         bindings:
-          createEmployee-in-0: employee-backend-command
-          createEmployee-out-0: employee-backend-event
+          createEmployee-in-0:
+            consumer:
+              enable-dlq: true
+  application:
+    name: employees-backend
 
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+  tracing:
+    sampling:
+      probability: 1.0
 
 logging:
   level:

@@ -1,0 +1,6 @@
+DELETE http://localhost:8888/api/caches
+
+### Encrypt
+POST http://localhost:8888/encrypt
+
+HelloEncoded

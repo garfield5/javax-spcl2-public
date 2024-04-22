@@ -1,11 +1,15 @@
 server:
   port: 8080
 
+
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+  tracing:
+    sampling:
+      probability: 1.0
 
 logging:
   level:
@@ -13,4 +17,8 @@ logging:
     org.hibernate.SQL: TRACE
 
 employees:
-  backend-url: http://localhost:8000
+  backend-url: lb://gateway
+
+spring:
+  application:
+    name: employees-frontend
