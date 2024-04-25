@@ -38,11 +38,11 @@ public class GatewayConfig {
 //                log.error("Error handling message: {}", e.getPayload().getMessage());
 //    }
 
-//    @Bean
-//    public Supplier<String> tick() {
-//        return () -> {
-//            log.info("Tick");
-//            return "Hello from Supplier " + LocalDateTime.now();
-//        };
-//    }
+    @Bean
+    public Supplier<String> tick() {
+        return () -> {
+            log.info("Tick");
+            return "Hello from Supplier " + LocalDateTime.now();
+        };
+    }
 }

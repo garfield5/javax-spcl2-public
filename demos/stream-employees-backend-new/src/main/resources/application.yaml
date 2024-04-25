@@ -11,20 +11,20 @@ spring:
   liquibase:
     change-log: classpath:db/db-changelog.yaml
   cloud:
-#    function:
-#      definition: createEmployee;tick
+    function:
+      definition: createEmployee;tick
     stream:
       function:
         bindings:
           createEmployee-in-0: employee-backend-command
           createEmployee-out-0: employee-backend-event
-#      bindings:
-#        tick-out-0:
-#          producer:
-#            poller:
-#              initial-delay: 0
-#              fixed-delay: 5000
-#          destination: employee-backend-tick
+      bindings:
+        tick-out-0:
+          producer:
+            poller:
+              initial-delay: 0
+              fixed-delay: 5000
+          destination: employee-backend-tick
 
 
 management:
