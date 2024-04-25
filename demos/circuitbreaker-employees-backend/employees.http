@@ -51,7 +51,7 @@ Content-Type: application/json
 {
   "level": 1,
   "latencyActive": false,
-  "exceptionsActive": false,
+  "exceptionsActive": true,
   "exception": {
     "type": "java.lang.RuntimeException",
     "method": "<init>",
