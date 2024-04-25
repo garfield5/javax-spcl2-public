@@ -23,9 +23,13 @@ spring:
     name: employees-frontend
   cloud:
     stream:
-      function:
-        bindings:
-          employeeCreated-in-0: employee-backend-event
+      bindings:
+        createEmployee:
+          destination: employee-backend-command
+          contentType: application/*+avro
+        employeeCreated-in-0:
+          destination: employee-backend-event
+          contentType: application/*+avro
       kafka:
         binder:
           enable-observation: true
