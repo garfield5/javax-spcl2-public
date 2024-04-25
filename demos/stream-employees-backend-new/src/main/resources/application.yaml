@@ -20,8 +20,9 @@ spring:
 #          createEmployee-out-0: employee-backend-event
       bindings:
         createEmployee-in-0:
-          error-handler-definition: employeesErrorHandler
+#          error-handler-definition: employeesErrorHandler
           destination: employee-backend-command
+          group: employee-backend
         createEmployee-out-0:
           destination: employee-backend-event
         tick-out-0:
@@ -30,7 +31,11 @@ spring:
               initial-delay: 0
               fixed-delay: 5000
           destination: employee-backend-tick
-
+      kafka:
+        bindings:
+          createEmployee-in-0:
+            consumer:
+              enable-dlq: true
 
 management:
   endpoints:
