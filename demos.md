@@ -19,12 +19,12 @@ Lsd. slide-ok.
 
 ```properties
 server.port=8888
-spring.cloud.config.server.git.uri=file:///C:\\trainings\\config
+spring.cloud.config.server.git.uri=file:///C:\\trainings\\javax-spcl2\\config
 spring.cloud.config.server.git.default-label=master
 ```
 
 
-* Git repo: `C:\training\config\config-client-demo.properties`
+* Git repo: `C:\trainings\javax-spcl2\config\config-client-demo.properties`
 
 ```properties
 demo.prefix = Hello
@@ -238,6 +238,10 @@ docker run -d --cap-add=IPC_LOCK -e VAULT_DEV_ROOT_TOKEN_ID=myroot -p 8200:8200 
 * `IPC_LOCK` - érzékeny adatokat ne swappelje a diskre
 * http://localhost:8200
 * Token bejelentkezés, `myroot`
+
+```shell
+docker exec -it vault sh
+```
 
 ```shell
 export VAULT_ADDR='http://127.0.0.1:8200'
