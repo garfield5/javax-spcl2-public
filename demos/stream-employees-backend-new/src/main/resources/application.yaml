@@ -14,11 +14,16 @@ spring:
     function:
       definition: createEmployee;tick
     stream:
-      function:
-        bindings:
-          createEmployee-in-0: employee-backend-command
-          createEmployee-out-0: employee-backend-event
+#      function:
+#        bindings:
+#          createEmployee-in-0: employee-backend-command
+#          createEmployee-out-0: employee-backend-event
       bindings:
+        createEmployee-in-0:
+          error-handler-definition: employeesErrorHandler
+          destination: employee-backend-command
+        createEmployee-out-0:
+          destination: employee-backend-event
         tick-out-0:
           producer:
             poller:

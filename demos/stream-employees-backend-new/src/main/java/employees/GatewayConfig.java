@@ -32,11 +32,11 @@ public class GatewayConfig {
         };
     }
 
-//    @Bean
-//    public Consumer<ErrorMessage> employeesErrorHandler() {
-//        return e ->
-//                log.error("Error handling message: {}", e.getPayload().getMessage());
-//    }
+    @Bean
+    public Consumer<ErrorMessage> employeesErrorHandler() {
+        return e ->
+                log.error("Error handling message: {}", e.getPayload().getMessage());
+    }
 
     @Bean
     public Supplier<String> tick() {
