@@ -751,15 +751,24 @@ public class GatewayConfig {
   Alapértelmezetten: `<bean neve> + -in- + <index>`, vagy `out`. Hozzárendelhető a 
   broker topic-ja.
 
-```
-spring.cloud.stream.function.bindings.createEmployee-in-0=employee-backend-command
-spring.cloud.stream.function.bindings.createEmployee-out-0=employee-backend-event
+```yaml
+cloud:
+  stream:
+    function:
+      bindings:
+        createEmployee-in-0: employee-backend-command
+        createEmployee-out-0: employee-backend-event
 ```
 
 * Meg lehet az implicit binding névhez adni explicit nevet is, de talán ez egy felesleges absztrakciós szint.
 
-```properties
-spring.cloud.stream.function.bindings.createEmployee-in-0=createEmployeeInput
+```yaml
+spring:
+  cloud:
+    stream:
+      function:
+        bindings:
+          createEmployee-in-0: createEmployeeInput
 ```
 
 * Ha csak egy `java.util.function.[Supplier/Function/Consumer]` van, akkor azt automatikusan bekonfigurálja,
@@ -1316,6 +1325,14 @@ public interface EmployeesClient {
 
 ```java
 model.put("employees", employeesClient.listEmployeesWithTimeLimiter().get(2500, TimeUnit.MILLISECONDS));
+```
+
+```yaml
+resilience4j:
+  timelimiter:
+    instances:
+      clientTimeLimiter:
+        timeout-duration: 1s
 ```
 
 ```http
