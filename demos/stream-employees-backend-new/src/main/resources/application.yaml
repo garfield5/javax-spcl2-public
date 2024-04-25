@@ -23,6 +23,7 @@ spring:
       bindings:
         createEmployee-in-0:
           destination: employee-backend-command
+          group: employee-backend
           contentType: application/*+avro
         createEmployee-out-0:
           destination: employee-backend-event
@@ -37,7 +38,7 @@ spring:
         binder:
           enable-observation: true # kafka üzenet headerjében utazzon a trace id
         bindings:
-          employee-backend-command:
+          createEmployee-in-0:
             consumer:
               enable-dlq: true
 
